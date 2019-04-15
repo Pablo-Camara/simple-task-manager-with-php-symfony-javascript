@@ -1,0 +1,49 @@
+version: '3'
+services:
+    php:
+        build: .docker/php
+        container_name: ppi_php
+        volumes:
+          - .:/home/wwwroot/ppi
+        environment:
+          - maildev_host=ppi_maildev
+        depends_on:
+          - maildev
+          - mysql
+    apache:
+        build: .docker/apache
+        container_name: ppi_apache
+        ports:
+          - 8080:80
+        volumes:
+          - .docker/config/vhosts:/etc/apache2/sites-enabled
+          - .:/home/wwwroot/ppi
+        depends_on:
+          - php
+    mysql:
+        image: mysql:5.6
+        container_name: ppi_mysql
+        volumes:
+            - .docker/data/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: ppi
+            MYSQL_USER: ppi_root
+            MYSQL_PASSWORD: ppi_root_pwd
+        ports:
+              - 3306:3306
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: ppi_phpmyadmin
+        environment:
+          PMA_HOST: mysql
+          PMA_PORT: 3306
+        ports:
+            - 8081:80
+        links:
+            - mysql
+    maildev:
+        image: djfarrelly/maildev
+        container_name: ppi_maildev
+        ports:
+          - 8082:80
