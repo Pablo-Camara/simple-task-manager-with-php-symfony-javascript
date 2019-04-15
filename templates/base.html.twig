@@ -2,10 +2,45 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Plataforma Pessoal Inteligente {% block title %}!{% endblock %}</title>
+
+        <style>
+            html,body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            #navbar {
+                background-color: #055479;
+                color: #ffffff;
+                height: 80px;
+                line-height: 80px;
+                padding: 0 12px;
+            }
+
+            #navbar .container {
+                width: 100%;
+                max-width: 768px;
+                margin: auto;
+            }
+
+            #navbar .sitename > span {
+                color: #f7ff00;
+            }
+        </style>
+
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <div id="navbar">
+            <div class="container">
+                <div class="sitename">
+                    Plataforma Pessoal <span>Inteligente</span>
+                </div>
+            </div>
+        </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
