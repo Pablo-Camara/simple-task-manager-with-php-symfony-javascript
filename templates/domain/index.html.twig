@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Minha Área{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+        .domain-manager {
+            width: 100%;
+            max-width: 768px;
+            margin: auto;
+        }
+
+        .domain-manager h1 {
+            font-size: 20px;
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+
+        .domain-manager h3 {
+          color: #055479;
+          margin-right: 10px;
+        }
+
+        .domain-manager p {
+            margin-top: 4px;
+            margin-left: 10px;
+        }
+
+        .domain-manager a, .domain-manager p {
+            color: #0c5478;
+        }
+
+        .domain-manager input[type="email"],
+        .domain-manager input[type="password"],
+        .domain-manager input[type="text"],
+        .domain-manager input[type="button"],
+        .domain-manager input[type="submit"]
+        {
+            -webkit-appearance:     none;
+            -moz-appearance:        none;
+            -ms-appearance:         none;
+            -o-appearance:          none;
+            appearance:             none;
+        }
+
+        .domain-manager input[type="button"],
+        .domain-manager input[type="submit"]
+        {
+            background-color: #0c5478;
+            border: 0;
+            color: #ffffff;
+            padding: 10px;
+            margin-left: 10px;
+        }
+
+
+        .domain-manager input[type="email"],
+        .domain-manager input[type="password"],
+        .domain-manager input[type="text"]
+        {
+            display: block;
+            width: 100%;
+            background: #055479;
+            color: #ffffff;
+            border: 0;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+            padding: 20px;
+            margin-bottom: 10px;
+
+        }
+
+        .domain-manager input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #f7ff00;
+            opacity: 1; /* Firefox */
+        }
+
+        .domain-manager input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #f7ff00;
+        }
+
+        .domain-manager input::-ms-input-placeholder { /* Microsoft Edge */
+            color: #f7ff00;
+        }
+
+
+        span.image.www {
+          width: 50px;
+          height: 50px;
+          margin-right: 10px;
+          display: inline-block;
+          background-size: cover;
+          background-image: url(/img/icons/www.jpg);
+          vertical-align: middle;
+        }
+
+        .domains-list {
+          margin-top: 15px;
+        }
+
+        .domains-list > .domain-item {
+          background-color: #055479;
+          color: #ffffff;
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+          padding-left: 10px;
+          margin-bottom: 10px;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="domain-manager">
+        <h1><span class="image www"></span> Gestor de Domínios</h1>
+
+        <h3>Os meus domínios</h3>
+        <div class="domains-list">
+            {% for domain in domains  %}
+            <div class="domain-item">
+              {{ domain.name }}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

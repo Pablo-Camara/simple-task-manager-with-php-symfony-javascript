@@ -26,6 +26,11 @@
                 margin: auto;
             }
 
+            #navbar a {
+                color: #ffffff;
+                text-decoration: none;
+            }
+
             #navbar .sitename > span {
                 color: #f7ff00;
             }
@@ -36,9 +41,9 @@
     <body>
         <div id="navbar">
             <div class="container">
-                <div class="sitename">
-                    Plataforma Pessoal <span>Inteligente</span>
-                </div>
+                <a class="sitename" href="{{ path('index') }}">
+                  Plataforma Pessoal <span>Inteligente</span>
+                </a>
             </div>
         </div>
         {% block body %}{% endblock %}
