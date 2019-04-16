@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}- Login{% endblock %}
 
 {% block stylesheets %}
 <style>
@@ -90,7 +90,7 @@
     <p>Por favor inicie sessão para aceder á sua área pessoal</p>
 
     <form method="post">
-        <input type="email" name="email" placeholder="Email"/>
+        <input type="email" name="email" placeholder="Email" value="{{ last_username }}"/>
         <input type="password" name="password" placeholder="Palavra-passe" />
         {%  if error %}<p class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>{%  endif %}
         <input type="hidden" name="_csrf_token"
