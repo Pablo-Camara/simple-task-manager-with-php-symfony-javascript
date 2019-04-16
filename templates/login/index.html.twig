@@ -10,6 +10,7 @@
         max-width: 768px;
         margin: auto;
     }
+
     .login-box h1 {
         margin-left: 10px;
     }
@@ -59,7 +60,7 @@
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
         -moz-box-sizing: border-box;    /* Firefox, other Gecko */
         box-sizing: border-box;         /* Opera/IE 8+ */
-        padding: 10px;
+        padding: 20px;
         margin-bottom: 10px;
 
     }
@@ -90,8 +91,11 @@
 
     <form method="post">
         <input type="email" placeholder="Email"/>
-        <input type="password" placeholder="******" />
-        {%  if error %}<p class="error">{{ error_message }}</p>{%  endif %}
+        <input type="password" placeholder="Palavra-passe" />
+        {%  if error %}<p class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>{%  endif %}
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
         <input type="submit" value="Iniciar sessão" />
     </form>
 </div>
