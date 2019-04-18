@@ -5,114 +5,6 @@
 {% block stylesheets %}
     <style>
 
-        .dashboard-box {
-            width: 100%;
-            max-width: 768px;
-            margin: auto;
-        }
-
-        .dashboard-box h1 {
-            margin-left: 10px;
-            margin-bottom: 0;
-        }
-
-        .dashboard-box p {
-            margin-top: 4px;
-            margin-left: 10px;
-        }
-
-        .dashboard-box a, .dashboard-box p {
-            color: #0c5478;
-        }
-
-        .dashboard-box input[type="email"],
-        .dashboard-box input[type="password"],
-        .dashboard-box input[type="text"],
-        .dashboard-box input[type="button"],
-        .dashboard-box input[type="submit"]
-        {
-            -webkit-appearance:     none;
-            -moz-appearance:        none;
-            -ms-appearance:         none;
-            -o-appearance:          none;
-            appearance:             none;
-        }
-
-        .dashboard-box input[type="button"],
-        .dashboard-box input[type="submit"]
-        {
-            background-color: #0c5478;
-            border: 0;
-            color: #ffffff;
-            padding: 10px;
-            margin-left: 10px;
-        }
-
-
-        .dashboard-box input[type="email"],
-        .dashboard-box input[type="password"],
-        .dashboard-box input[type="text"]
-        {
-            display: block;
-            width: 100%;
-            background: #055479;
-            color: #ffffff;
-            border: 0;
-            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-            box-sizing: border-box;         /* Opera/IE 8+ */
-            padding: 20px;
-            margin-bottom: 10px;
-
-        }
-
-        .dashboard-box input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-            color: #f7ff00;
-            opacity: 1; /* Firefox */
-        }
-
-        .dashboard-box input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-            color: #f7ff00;
-        }
-
-        .dashboard-box input::-ms-input-placeholder { /* Microsoft Edge */
-            color: #f7ff00;
-        }
-
-        .dashboard-box .dashboard-items {
-            text-align: center;
-        }
-
-        .dashboard-box .dashboard-items .item {
-            background-color: #055479;
-            display: block;
-            height: 100px;
-            margin: 10px;
-            padding-top: 20px;
-            cursor: pointer;
-        }
-
-        .dashboard-box .dashboard-items .item .image {
-            width: 50px;
-            height: 50px;
-            margin: auto;
-            margin-bottom: 8px;
-            background-size:  cover;
-        }
-
-        .dashboard-box .dashboard-items .item .title {
-            color: #ffffff;
-
-        }
-
-        .image.tasks {
-            background-image: url('/img/icons/tasks.png');
-        }
-
-        .image.www {
-            background-image: url('/img/icons/www.jpg');
-        }
-
         .image.clients {
             background-image: url('/img/icons/clients.png');
         }
@@ -127,20 +19,10 @@
         <p>Bem vindo, <b>{{ name }}</b>. <a href="/logout">Sair</a></p>
 
         <div class="dashboard-items">
-            <div class="item">
-                <div class="image tasks"></div>
-                <div class="title">Gestor de Tarefas</div>
-            </div>
-
-            <a href="{{ path('domain_manager') }}" class="item">
-                  <div class="image www"></div>
-                  <div class="title">Gestor Domínios</div>
-            </a>
-
-            <div class="item">
+            <a class="item" href="{{ path('user_manager') }}">
                 <div class="image clients"></div>
-                <div class="title">Gestor de Contactos</div>
-            </div>
+                <div class="title">Gestor de Utilizadores</div>
+            </a>
         </div>
     </div>
 {% endblock %}

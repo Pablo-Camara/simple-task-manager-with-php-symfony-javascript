@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Minha Área{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+        .image.clients {
+            background-image: url('/img/icons/clients.png');
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="dashboard-box">
+        <a class="section-title" href="{{ path('user_manager') }}">
+            <div class="image clients"></div>
+            <div class="title">Gestor de Utilizadores</div>
+        </a>
+
+        <div class="dashboard-list-items">
+          {% for user in users %}
+            <div class="item">
+              <div class="item-line white">
+                {{ user.firstName }} {{ user.middleName ? user.middleName : ''}} {{ user.lastName }}
+              </div>
+              <div class="item-line">
+                {{ user.email }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+{% endblock %}
