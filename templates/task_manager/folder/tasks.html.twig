@@ -1,0 +1,21 @@
+{% extends 'task_manager/folder/base.html.twig' %}
+
+{% block content %}
+      <div class="search-box">
+        <input type="text" placeholder="Pesquisar tarefa" class="mb0"/>
+      </div>
+      <h3 class="subtitle mt0">Tarefas:<span class="settings">Opções</span></h3>
+      {% if tasks|length > 0 %}
+        {% for task in tasks %}
+          <div class="item">
+            <div class="item-line white smaller">
+              {{ task.name }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="message">
+          Nenhuma tarefa encontrada dentro desta pasta
+        </div>
+      {% endif %}
+{% endblock %}
