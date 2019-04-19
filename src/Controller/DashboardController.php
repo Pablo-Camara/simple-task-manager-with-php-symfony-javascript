@@ -15,6 +15,7 @@ class DashboardController extends AbstractController
         $user = $this->getUser();
         return $this->render('dashboard/index.html.twig', [
             'name' => $user->getFirstName() . ' ' . $user->getLastName(),
+            'selected_menu' => 'dashboard'
         ]);
     }
 }

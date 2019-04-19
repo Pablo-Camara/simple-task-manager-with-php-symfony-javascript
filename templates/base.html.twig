@@ -12,175 +12,41 @@
                 font-family: Arial, sans-serif;
             }
 
-            #navbar {
-                background-color: #055479;
-                color: #ffffff;
-                height: 80px;
-                line-height: 80px;
-                padding: 0 12px;
+            .mb0 {
+              margin-bottom: 0 !important;
             }
 
-            #navbar .container {
-                width: 100%;
-                max-width: 768px;
-                margin: auto;
+            .mt0 {
+              margin-top: 0 !important;
             }
 
-            #navbar a {
-                color: #ffffff;
-                text-decoration: none;
+            p.small {
+              font-size: 14px !important;
             }
 
-            #navbar .sitename > span {
-                color: #f7ff00;
+            .dashboard-box h3.subtitle span.settings {
+              background: transparent url('{{asset("img/icons/settings.png")}}') no-repeat;
             }
 
-            .dashboard-box {
-                width: 100%;
-                max-width: 768px;
-                margin: auto;
+            .search-box {
+              display: none;
             }
 
-            .dashboard-box h1 {
-                margin-left: 10px;
-                margin-bottom: 0;
+            .folder-icon {
+              background: transparent url('{{ asset("/img/icons/folder-icon.png")}}') no-repeat;
             }
 
-            .dashboard-box p {
-                margin-top: 4px;
-                margin-left: 10px;
+            .image.tasks {
+                background-image: url('{{ asset("/img/icons/tasks.png") }}');
             }
-
-            .dashboard-box a, .dashboard-box p {
-                color: #0c5478;
-            }
-
-            .dashboard-box input[type="email"],
-            .dashboard-box input[type="password"],
-            .dashboard-box input[type="text"],
-            .dashboard-box input[type="button"],
-            .dashboard-box input[type="submit"]
-            {
-                -webkit-appearance:     none;
-                -moz-appearance:        none;
-                -ms-appearance:         none;
-                -o-appearance:          none;
-                appearance:             none;
-            }
-
-            .dashboard-box input[type="button"],
-            .dashboard-box input[type="submit"]
-            {
-                background-color: #0c5478;
-                border: 0;
-                color: #ffffff;
-                padding: 10px;
-                margin-left: 10px;
-            }
-
-
-            .dashboard-box input[type="email"],
-            .dashboard-box input[type="password"],
-            .dashboard-box input[type="text"]
-            {
-                display: block;
-                width: 100%;
-                background: #055479;
-                color: #ffffff;
-                border: 0;
-                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-                box-sizing: border-box;         /* Opera/IE 8+ */
-                padding: 20px;
-                margin-bottom: 10px;
-
-            }
-
-            .dashboard-box input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-                color: #f7ff00;
-                opacity: 1; /* Firefox */
-            }
-
-            .dashboard-box input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-                color: #f7ff00;
-            }
-
-            .dashboard-box input::-ms-input-placeholder { /* Microsoft Edge */
-                color: #f7ff00;
-            }
-
-            .dashboard-box .dashboard-items {
-                text-align: center;
-            }
-
-            .dashboard-box .dashboard-items .item, .dashboard-box .section-title {
-                background-color: #055479;
-                display: block;
-                margin: 10px 0;
-                cursor: pointer;
-            }
-
-            .dashboard-box .dashboard-items .item {
-                height: 100px;
-                padding-top: 20px;
-            }
-
-            .dashboard-box .section-title {
-                height: 50px;
-                line-height: 50px;
-            }
-
-
-            .dashboard-box .dashboard-items .item .image, .dashboard-box .section-title .image {
-                width: 50px;
-                height: 50px;
-                background-size:  cover;
-            }
-
-            .dashboard-box .dashboard-items .item .image {
-                margin: auto;
-                margin-bottom: 8px;
-            }
-
-            .dashboard-box .section-title .image {
-                float: left;
-            }
-
-            .dashboard-box .dashboard-items .item .title, .dashboard-box .section-title .title {
-                color: #ffffff;
-            }
-
-            .dashboard-box .section-title .title {
-                float: left;
-            }
-
-            .dashboard-box .dashboard-list-items .item {
-              color: #f7ff3f;
-              background-color: #1b5a77;
-              padding: 10px;
-              margin-bottom: 2px;
-              cursor: pointer;
-            }
-
-            .dashboard-box .dashboard-list-items .item:hover {
-              color: #FFFFFF;
-              background-color: #21485a;
-            }
-            .dashboard-box .dashboard-list-items .item:hover .item-line.white {
-              color: #f7ff3f;
-            }
-
-            .dashboard-box .dashboard-list-items .item-line {
-              margin-bottom: 4px;
-            }
-
-            .dashboard-box .dashboard-list-items .item-line.white {
-              color: #FFFFFF;
-            }
-
         </style>
 
+        <link rel="stylesheet" href="{{ asset('css/navbar.css?v=1.0') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/dashboard.css?v=1.0.0') }}"/>
+
         {% block stylesheets %}{% endblock %}
+
+
     </head>
     <body>
         <div id="navbar">
@@ -188,9 +54,29 @@
                 <a class="sitename" href="{{ path('index') }}">
                   Plataforma Pessoal <span>Inteligente</span>
                 </a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <div class="menu-toggle" id="main-menu-toggle">Menu</div>
+                  <div class="menu" id="main-menu" style="display: none;">
+
+                      <a href="{{ path('dashboard') }}">
+                        <div class="menu-item {%  if selected_menu is defined and selected_menu == 'dashboard' %}selected{% endif %}">
+                            Minha Área
+                        </div>
+                      </a>
+
+                      <a href="{{ path('logout') }}">
+                        <div class="menu-item">
+                            Sair
+                        </div>
+                      </a>
+                  </div>
+                {% endif %}
             </div>
         </div>
         {% block body %}{% endblock %}
+
+        <script src="{{ asset('js/helpers.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

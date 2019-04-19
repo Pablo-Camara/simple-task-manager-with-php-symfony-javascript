@@ -4,24 +4,37 @@
 
 {% block stylesheets %}
     <style>
+      .image.clients {
+          background-image: url('{{ asset("/img/icons/clients.png")}}');
+      }
 
-        .image.clients {
-            background-image: url('/img/icons/clients.png');
-        }
+      .image.tasks {
+          background-image: url('{{ asset("/img/icons/tasks.png")}}');
+      }
 
-
+      h1 {
+        font-size: 22px;
+      }
     </style>
 {% endblock %}
 
 {% block body %}
     <div class="dashboard-box">
         <h1>Minha Área</h1>
-        <p>Bem vindo, <b>{{ name }}</b>. <a href="/logout">Sair</a></p>
+        <p class="small">Bem vindo <b>{{ name }}</b>, esta é a sua área pessoal.</p>
 
         <div class="dashboard-items">
+
+        
             <a class="item" href="{{ path('user_manager') }}">
                 <div class="image clients"></div>
                 <div class="title">Gestor de Utilizadores</div>
+            </a>
+
+
+            <a class="item" href="{{ path('task_manager') }}">
+                <div class="image tasks"></div>
+                <div class="title">Gestor de Tarefas</div>
             </a>
         </div>
     </div>

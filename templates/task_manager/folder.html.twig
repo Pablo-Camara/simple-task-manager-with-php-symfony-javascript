@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Gestor de Tarefas{% endblock %}
+
+{% block body %}
+    <div class="dashboard-box inside">
+        <a class="section-title header" href="{{ path('task_manager') }}">
+            <div class="image tasks"></div>
+            <div class="title">Gestor de Tarefas</div>
+        </a>
+
+        <div class="dashboard-list-items">
+
+          <div class="item mb0">
+            <div class="item-line">
+              <span>Pasta:</span> {{ folder.name }}
+            </div>
+            <div class="item-line description smaller">
+              {{ folder.description }}
+            </div>
+            <div class="item-line buttons">
+                <a href="{{ parentfolder ? path('task_folder', {folder: parentfolder.id}) : path('task_manager') }}" class="btn">Voltar</a>
+                <a href="{{ path('task_folder_subfolders', {folder: folder.id}) }}" class="btn">Ver subpastas</a>
+            </div>
+          </div>
+          <div class="search-box">
+            <input type="text" placeholder="Pesquisar tarefa" class="mb0"/>
+          </div>
+          <h3 class="subtitle mt0">Tarefas:<span class="settings">Opções</span></h3>
+          {% if tasks|length > 0 %}
+            {% for task in tasks %}
+              <div class="item">
+                <div class="item-line white smaller">
+                  {{ task.name }}
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="message">
+              Nenhuma tarefa encontrada dentro desta pasta
+            </div>
+          {% endif %}
+        </div>
+    </div>
+{% endblock %}

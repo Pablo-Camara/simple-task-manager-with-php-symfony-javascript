@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}- Minha Área{% endblock %}
+{% block title %}- Gestor de Utilizadores{% endblock %}
 
 {% block stylesheets %}
     <style>
 
         .image.clients {
-            background-image: url('/img/icons/clients.png');
+            background-image: url('{{ asset("/img/icons/clients.png") }}');
         }
+
 
 
     </style>
@@ -15,22 +16,31 @@
 
 {% block body %}
     <div class="dashboard-box">
-        <a class="section-title" href="{{ path('user_manager') }}">
+        <a class="section-title header mb0" href="{{ path('user_manager') }}">
             <div class="image clients"></div>
             <div class="title">Gestor de Utilizadores</div>
         </a>
-
+        <div class="search-box">
+          <input type="text" placeholder="Pesquisar utilizador" class="mb0"/>
+        </div>
+        <h3 class="subtitle mt0">Lista de utilizadores:<span class="settings">Opções</span></h3>
         <div class="dashboard-list-items">
-          {% for user in users %}
-            <div class="item">
-              <div class="item-line white">
-                {{ user.firstName }} {{ user.middleName ? user.middleName : ''}} {{ user.lastName }}
+          {% if users|length > 0 %}
+            {% for user in users %}
+              <div class="item hover">
+                <div class="item-line white">
+                  {{ user.getFullName() }}
+                </div>
+                <div class="item-line smaller">
+                  {{ user.email }}
+                </div>
               </div>
-              <div class="item-line">
-                {{ user.email }}
-              </div>
+            {% endfor %}
+          {% else %}
+            <div class="message">
+              Nenhum utilizador encontrado
             </div>
-          {% endfor %}
+          {% endif %}
         </div>
     </div>
 {% endblock %}

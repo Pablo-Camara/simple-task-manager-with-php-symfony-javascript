@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -47,6 +49,27 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=100)
      */
     private $lastName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="createdBy")
+     */
+    private $tasks;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TaskFolder", mappedBy="createdBy")
+     */
+    private $taskFolders;
+
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+        $this->taskFolders = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +181,77 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFullName(): string {
+      $fullname = ($this->firstName ? $this->firstName : '') . ' ' . ($this->middleName ? $this->middleName : '') . ' ' . ($this->lastName ? $this->lastName : '');
+      return trim($fullname);
+    }
+
+    /**
+     * @return Collection|Task[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+
+    public function addTask(Task $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(Task $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            // set the owning side to null (unless already changed)
+            if ($task->getCreatedBy() === $this) {
+                $task->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function addTaskFolder(TaskFolder $taskFolder): self
+    {
+        if (!$this->taskFolders->contains($taskFolder)) {
+            $this->taskFolders[] = $taskFolder;
+            $taskFolder->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTaskFolder(TaskFolder $taskFolder): self
+    {
+        if ($this->taskFolders->contains($taskFolder)) {
+            $this->taskFolders->removeElement($taskFolder);
+            // set the owning side to null (unless already changed)
+            if ($taskFolder->getCreatedBy() === $this) {
+                $taskFolder->setCreatedBy(null);
+            }
+        }
 
         return $this;
     }
