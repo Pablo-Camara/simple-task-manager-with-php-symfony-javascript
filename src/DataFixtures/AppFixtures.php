@@ -30,7 +30,7 @@ class AppFixtures extends Fixture
         $user->setEmail('pablo@camara.pt');
         $user->setRoles(['ROLE_ADMIN']);
         $user->setCreatedAt(new DateTime('now'));
-        $user->setPassword($this->passwordEncoder->encodePassword($user,'1234'));
+        $user->setPassword($this->passwordEncoder->encodePassword($user,'ppiAdminPassword2019'));
 
         $taskFolder = new TaskFolder();
         $taskFolder->setName('Gestor de Utilizadores');
