@@ -24,41 +24,47 @@ class TaskManagerController extends AbstractController
     }
 
     /**
-     * @Route("/task-manager", name="task_manager")
+     * Shows the User's main task Folders
+     * @Route("/task-manager/folders", name="task_manager")
      */
-    public function index()
+    public function folders()
     {
         $main_folders = $this->entityManager->getRepository(TaskFolder::class)->getTaskFolders($this->user);
 
-        return $this->render('task_manager/main_folders_list.html.twig', [
+        return $this->render('task_manager/folders.html.twig', [
             'main_folders' => $main_folders,
+        ]);
+    }
+
+    /**
+     * Shows all Subfolders from a Folder
+     * @Route("/task-manager/folder/{folder}/subfolders", name="task_folder_subfolders")
+     */
+    public function folder_subfolders(TaskFolder $folder)
+    {
+        $taskFolderRepo = $this->entityManager->getRepository(TaskFolder::class);
+
+        return $this->render('task_manager/folder/subfolders.html.twig', [
+            'folder' => $folder,
+            'parentfolder' => $folder->getFolder(),
+            'subfolders' => $taskFolderRepo->getTaskFolders($this->user,$folder->getId())
         ]);
     }
 
 
     /**
-     * @Route("/task-manager/folder/{folder}", name="task_folder")
+     * Shows all Tasks from a Folder
+     * @Route("/task-manager/folder/{folder}/tasks", name="task_folder")
      */
-    public function folder(TaskFolder $folder)
+    public function folder_tasks(TaskFolder $folder)
     {
-        return $this->render('task_manager/folder.html.twig', [
+
+        return $this->render('task_manager/folder/tasks.html.twig', [
             'folder' => $folder,
             'tasks' => $folder->getTasks(),
             'parentfolder' => $folder->getFolder()
         ]);
     }
 
-    /**
-     * @Route("/task-manager/subfolders/{folder}", name="task_folder_subfolders")
-     */
-    public function subfolders(TaskFolder $folder)
-    {
-        $taskFolderRepo = $this->entityManager->getRepository(TaskFolder::class);
 
-        return $this->render('task_manager/subfolders.html.twig', [
-            'folder' => $folder,
-            'parentfolder' => $folder->getFolder(),
-            'subfolders' => $taskFolderRepo->getTaskFolders($this->user,$folder->getId())
-        ]);
-    }
 }
