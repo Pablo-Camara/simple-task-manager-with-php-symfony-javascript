@@ -7,7 +7,7 @@
     <h3 class="subtitle mt0">Subpastas:<span class="settings">Opções</span></h3>
     {% if subfolders|length > 0 %}
       {% for subfolder in subfolders %}
-        <a class="item hover" href="{{ path('task_folder', {folder: subfolder.id}) }}">
+        <a class="item hover" href="{{ path('task-manager-folder-tasks', {folder: subfolder.id}) }}">
           <div class="item-line">
             <span class="icon folder-icon"></span> {{ subfolder.name }}
           </div>

@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="dashboard-box inside">
-        <a class="section-title header" href="{{ path('task_manager') }}">
+        <a class="section-title header" href="{{ path('task-manager-folders') }}">
             <div class="image tasks"></div>
             <div class="title">Gestor de Tarefas</div>
         </a>
@@ -19,11 +19,11 @@
               {{ folder.description }}
             </div>
             <div class="item-line buttons">
-                <a href="{{ parentfolder ? path('task_folder', {folder: parentfolder.id}) : path('task_manager') }}" class="btn">Voltar</a>
+                <a href="{{ parentfolder ? path('task-manager-folders', {folder: parentfolder.id}) : path('task-manager-folders') }}" class="btn">Voltar</a>
                 {% if view == 'folder_tasks' %}
-                  <a href="{{ path('task_folder_subfolders', {folder: folder.id}) }}" class="btn">Ver subpastas</a>
+                  <a href="{{ path('task-manager-folder-subfolders', {folder: folder.id}) }}" class="btn">Ver subpastas</a>
                 {% else %}
-                  <a href="{{ path('task_folder', {folder: folder.id}) }}" class="btn">Ver tarefas</a>
+                  <a href="{{ path('task-manager-folder-tasks', {folder: folder.id}) }}" class="btn">Ver tarefas</a>
                 {% endif %}
             </div>
           </div>

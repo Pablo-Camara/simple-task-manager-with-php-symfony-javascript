@@ -12,7 +12,7 @@
 
 {% block body %}
     <div class="dashboard-box">
-        <a class="section-title header mb0" href="{{ path('task_manager') }}">
+        <a class="section-title header mb0" href="{{ path('task-manager-folders') }}">
             <div class="image tasks"></div>
             <div class="title">Gestor de Tarefas</div>
         </a>
@@ -23,7 +23,7 @@
         <div class="dashboard-list-items">
           {% if main_folders|length > 0 %}
             {% for folder in main_folders %}
-              <a class="item" href="{{ path('task_folder', { folder: folder.id }) }}">
+              <a class="item" href="{{ path('task-manager-folder-tasks', { folder: folder.id }) }}">
                 <div class="item-line">
                   <span class="icon folder-icon"></span> {{ folder.name }}
                 </div>

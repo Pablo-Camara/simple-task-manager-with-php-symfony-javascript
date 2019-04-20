@@ -25,7 +25,10 @@ class TaskManagerController extends AbstractController
 
     /**
      * Shows the User's main task Folders
-     * @Route("/task-manager/folders", name="task_manager")
+     * @Route({
+     *     "pt": "/gestor-de-tarefas/pastas",
+     *     "en": "/task-manager/folders"
+     * }, name="task-manager-folders")
      */
     public function folders()
     {
@@ -38,7 +41,10 @@ class TaskManagerController extends AbstractController
 
     /**
      * Shows all Subfolders from a Folder
-     * @Route("/task-manager/folder/{folder}/subfolders", name="task_folder_subfolders")
+     * @Route({
+     *     "pt": "/gestor-de-tarefas/pasta/{folder}/subpastas",
+     *     "en": "/task-manager/folder/{folder}/subfolders"
+     * }, name="task-manager-folder-subfolders")
      */
     public function folder_subfolders(TaskFolder $folder)
     {
@@ -55,7 +61,10 @@ class TaskManagerController extends AbstractController
 
     /**
      * Shows all Tasks from a Folder
-     * @Route("/task-manager/folder/{folder}/tasks", name="task_folder")
+     * @Route({
+     *     "pt": "/gestor-de-tarefas/pasta/{folder}/tarefas",
+     *     "en": "/task-manager/folder/{folder}/tasks"
+     * }, name="task-manager-folder-tasks")
      */
     public function folder_tasks(TaskFolder $folder)
     {
