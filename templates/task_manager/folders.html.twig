@@ -34,14 +34,20 @@
         <div class="dashboard-list-items">
           {% if main_folders|length > 0 %}
             {% for folder in main_folders %}
-              <a class="item" href="{{ path('task-manager-folder-tasks', { folder: folder.id }) }}">
+              <div class="item">
                 <div class="item-line">
                   <span class="icon folder-icon"></span> {{ folder.name }}
                 </div>
                 <div class="item-line white smaller pl30">
                   {{ folder.description }}
                 </div>
-              </a>
+
+                <div class="item-line buttons">
+                  <a href="{{ path('task-manager-folder-tasks', { folder: folder.id }) }}"  class="btn">Ver tarefas</a>
+                  <a href="{{ path('task-manager-folder-subfolders', {folder: folder.id}) }}" class="btn">Ver subpastas</a>
+                </div>
+
+              </div>
             {% endfor %}
           {% else %}
             <div class="message">
