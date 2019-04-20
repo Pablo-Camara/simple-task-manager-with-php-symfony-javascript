@@ -2,28 +2,46 @@
 
 {% block title %}- Gestor de Utilizadores{% endblock %}
 
-{% block stylesheets %}
-    <style>
-
-        .image.clients {
-            background-image: url('{{ asset("/img/icons/clients.png") }}');
-        }
-
-
-
-    </style>
-{% endblock %}
-
 {% block body %}
-    <div class="dashboard-box">
+    <div class="dashboard-box pos-relative">
         <a class="section-title header mb0" href="{{ path('user_manager') }}">
             <div class="image clients"></div>
             <div class="title">Gestor de Utilizadores</div>
         </a>
-        <div class="search-box">
-          <input type="text" placeholder="Pesquisar utilizador" class="mb0"/>
+
+        <div id="new-user-component" style="display: none">
+          <h3 class="subtitle mt0 smaller-subtitle">Novo utilizador: <span class="close-label" onClick="hideElement('new-user-component')">X</span></h3>
+          <input type="text" placeholder="Nome do Utilizador" class="mb0 ph-white db-border-b">
+          <input type="email" placeholder="Email" class="mb0 ph-white db-border-b">
+          <input type="password" placeholder="Nova password" class="mb0 ph-white db-border-b">
+          <input type="password" placeholder="Repita a nova password" class="mb0 ph-white db-border-b">
+
+          <select multiple size="4">
+              <option value="" disabled>Permissões:</option>
+              <option class="color-blue">Administrador</option>
+              <option>Gestor de Tarefas</option>
+          </select>
+
         </div>
-        <h3 class="subtitle mt0">Lista de utilizadores:<span class="settings">Opções</span></h3>
+
+
+
+        <div class="search-box" id="search-users-component">
+          <h3 class="subtitle mt0 smaller-subtitle" style="color: white">Pesquisar utilizador: <span class="close-label" onClick="hideElement('search-users-component')">X</span></h3>
+          <input type="text" placeholder="Digite aqui a sua pesquisa.." class="mb0" id="search-users-box" autofocus/>
+        </div>
+
+        <h3 class="subtitle mt0">Lista de utilizadores:<span class="settings" onClick="toggleDisplay('users-menu')">Opções</span></h3>
+        <div id="users-menu" class="subtitle-menu" style="display: none;">
+          <div id="new-user" class="menu-item" onClick="displayElement('new-user-component'); hideElement('users-menu')">
+            <span class="icon new-user-icon"></span> Novo utilizador
+          </div>
+
+          <div id="search-users" class="menu-item" onClick="javascript:displayElement('search-users-component'); hideElement('users-menu'); document.getElementById('search-users-box').focus();">
+            <span class="icon search-icon"></span> Pesquisar
+          </div>
+        </div>
+
         <div class="dashboard-list-items">
           {% if users|length > 0 %}
             {% for user in users %}
