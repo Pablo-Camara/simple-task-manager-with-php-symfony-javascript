@@ -2,6 +2,13 @@
 
 {% block content %}
 
+  <div id="new-subfolder-component" style="display: none">
+    <h3 class="subtitle mt0 smaller-subtitle">Nova subpasta: <span class="close-label" onClick="hideElement('new-subfolder-component')">X</span></h3>
+    <input type="text" placeholder="Nome da subpasta" class="mb0 ph-white">
+    <textarea placeholder="Descrição" rows="5" class="ph-white lb-border-top"></textarea>
+    <div class="submit-button">Criar</div>
+  </div>
+
     <div class="search-box">
       <input type="text" placeholder="Pesquisar subpasta" class="mb0"/>
     </div>

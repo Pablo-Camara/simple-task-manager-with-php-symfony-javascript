@@ -16,8 +16,17 @@
             <div class="image tasks"></div>
             <div class="title">Gestor de Tarefas</div>
         </a>
-        <div class="search-box">
-          <input type="text" placeholder="Pesquisar pasta" class="mb0"/>
+
+        <div id="new-folder-component" style="display: none">
+          <h3 class="subtitle mt0 smaller-subtitle">Nova pasta: <span class="close-label" onClick="hideElement('new-folder-component')">X</span></h3>
+          <input type="text" placeholder="Nome da pasta" class="mb0 ph-white">
+          <textarea placeholder="Descrição" rows="5" class="ph-white lb-border-top mb0"></textarea>
+          <div class="submit-button">Criar</div>
+        </div>
+
+
+        <div class="search-box" id="search-folders-component">
+          <input type="text" placeholder="Pesquisar pastas" class="mb0" id="search-folders-box"/>
         </div>
         <h3 class="subtitle mt0">As minhas pastas:<span class="settings" onClick="toggleDisplay('folders-menu');">Opções</span></h3>
         <div id="folders-menu" class="subtitle-menu" style="display: none;">
@@ -25,7 +34,7 @@
             <span class="icon new-folder-icon"></span> Nova pasta
           </div>
 
-          <div id="search-folders" class="menu-item" onClick="displayElement('search-folders-component'); hideElement('folders-menu')">
+          <div id="search-folders" class="menu-item" onClick="javascript:displayElement('search-folders-component'); hideElement('folders-menu'); document.getElementById('search-folders-box').focus();">
             <span class="icon search-icon"></span> Pesquisar
           </div>
         </div>
