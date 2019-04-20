@@ -10,24 +10,24 @@ function ready(callback){
 }
 
 
-function toggleMenu(menu_id){
-  var menu = document.getElementById(menu_id);
-  if(menu.style.display === 'none')menu.style.display = 'block';
-  else menu.style.display = 'none';
+function toggleDisplay(element_id){
+  var element = document.getElementById(element_id);
+  if(element.style.display === 'none')element.style.display = 'block';
+  else element.style.display = 'none';
 };
 
 
-function isMenuOpen(menu_id){
-  var menu = document.getElementById(menu_id);
-  return !(menu.style.display === 'none');
+function isVisible(element_id){
+  var element = document.getElementById(element_id);
+  return !(element.style.display === 'none');
 }
 
-function openMenu(menu_id){
-  var menu = document.getElementById(menu_id);
-  menu.style.display = 'block';
+function displayElement(element_id){
+  var element = document.getElementById(element_id);
+  element.style.display = 'block';
 }
 
-function closeMenu(menu_id){
-  var menu = document.getElementById(menu_id);
-  menu.style.display = 'none';
+function hideElement(element_id){
+  var element = document.getElementById(element_id);
+  element.style.display = 'none';
 }

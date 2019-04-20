@@ -10,7 +10,7 @@ ready(function(){
   window.addEventListener('click', function(e){
 
     if (!document.getElementById(mainMenuId).contains(e.target) && !mainMenuToggle.contains(e.target)){
-        closeMenu(mainMenuId);
+        hideElement(mainMenuId);
         mainMenuToggle.classList.remove('open');
     }
 
@@ -19,10 +19,10 @@ ready(function(){
 
   mainMenuToggle.addEventListener('click', function(e){
     if(!e.target.classList.contains('open')){
-      openMenu(mainMenuId);
+      displayElement(mainMenuId);
       mainMenuToggle.classList.add('open');
     } else {
-      closeMenu(mainMenuId);
+      hideElement(mainMenuId);
       mainMenuToggle.classList.remove('open');
     }
   });

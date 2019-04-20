@@ -4,6 +4,13 @@
       <div class="search-box">
         <input type="text" placeholder="Pesquisar tarefa" class="mb0"/>
       </div>
+
+      <div id="new-task-component" style="display: none">
+        <h3 class="subtitle mt0 smaller-subtitle">Nova tarefa: <span class="close-label">X</span></h3>
+        <input type="text" placeholder="Nome da tarefa" class="mb0 ph-white">
+        <textarea placeholder="Descrição" rows="5" class="ph-white lb-border-top"></textarea>
+      </div>
+
       <h3 class="subtitle mt0">Tarefas:<span class="settings">Opções</span></h3>
       {% if tasks|length > 0 %}
         {% for task in tasks %}
