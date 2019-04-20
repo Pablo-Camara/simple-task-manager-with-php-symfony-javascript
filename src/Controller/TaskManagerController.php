@@ -45,6 +45,7 @@ class TaskManagerController extends AbstractController
         $taskFolderRepo = $this->entityManager->getRepository(TaskFolder::class);
 
         return $this->render('task_manager/folder/subfolders.html.twig', [
+            'view' => 'folder_subfolders',
             'folder' => $folder,
             'parentfolder' => $folder->getFolder(),
             'subfolders' => $taskFolderRepo->getTaskFolders($this->user,$folder->getId())
@@ -60,6 +61,7 @@ class TaskManagerController extends AbstractController
     {
 
         return $this->render('task_manager/folder/tasks.html.twig', [
+            'view' => 'folder_tasks',
             'folder' => $folder,
             'tasks' => $folder->getTasks(),
             'parentfolder' => $folder->getFolder()
