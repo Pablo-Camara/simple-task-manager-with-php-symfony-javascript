@@ -12,6 +12,16 @@
       </div>
 
       <h3 class="subtitle mt0">Tarefas:<span class="settings">Opções</span></h3>
+      <div id="tasks-menu" class="subtitle-menu">
+        <div id="new-task" class="menu-item">
+          <span class="icon new-icon"><span> Nova tarefa
+        </div>
+
+        <div id="search-task" class="menu-item">
+          <span class="icon search-icon"><span> Pesquisar
+        </div>
+      </div>
+
       {% if tasks|length > 0 %}
         {% for task in tasks %}
           <div class="item">
