@@ -1,24 +1,27 @@
 {% extends 'task_manager/folder/base.html.twig' %}
 
 {% block content %}
-      <div class="search-box">
-        <input type="text" placeholder="Pesquisar tarefa" class="mb0"/>
-      </div>
+
 
       <div id="new-task-component" style="display: none">
-        <h3 class="subtitle mt0 smaller-subtitle">Nova tarefa: <span class="close-label">X</span></h3>
+        <h3 class="subtitle mt0 smaller-subtitle">Nova tarefa: <span class="close-label" onClick="hideElement('new-task-component')">X</span></h3>
         <input type="text" placeholder="Nome da tarefa" class="mb0 ph-white">
         <textarea placeholder="Descrição" rows="5" class="ph-white lb-border-top"></textarea>
       </div>
 
-      <h3 class="subtitle mt0">Tarefas:<span class="settings">Opções</span></h3>
-      <div id="tasks-menu" class="subtitle-menu">
-        <div id="new-task" class="menu-item">
-          <span class="icon new-icon"><span> Nova tarefa
+
+      <div class="search-box" id="search-tasks-component">
+        <input type="text" placeholder="Pesquisar tarefa" class="mb0" autofocus/>
+      </div>
+      
+      <h3 class="subtitle mt0">Tarefas:<span class="settings" onClick="toggleDisplay('tasks-menu')">Opções</span></h3>
+      <div id="tasks-menu" class="subtitle-menu" style="display: none;">
+        <div id="new-task" class="menu-item" onClick="displayElement('new-task-component'); hideElement('tasks-menu')">
+          <span class="icon new-task-icon"></span> Nova tarefa
         </div>
 
-        <div id="search-task" class="menu-item">
-          <span class="icon search-icon"><span> Pesquisar
+        <div id="search-task" class="menu-item" onClick="displayElement('search-tasks-component'); hideElement('tasks-menu')">
+          <span class="icon search-icon"></span> Pesquisar
         </div>
       </div>
 

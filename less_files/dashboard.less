@@ -261,7 +261,9 @@
   cursor: pointer;
 }
 
-
+.dashboard-box.inside {
+  position: relative;
+}
 
 .dashboard-box.inside .section-title {
   margin-bottom: 0;
@@ -278,4 +280,34 @@
 .dashboard-box.inside .dashboard-list-items .item:first-child {
   background-color: #113242;
   padding: 20px;
+}
+
+.dashboard-box .dashboard-list-items .subtitle-menu {
+  position: absolute;
+  right: 0;
+  width: 300px;
+  background-color: #0c3f54;
+
+  .menu-item { // LATER WILL USE RIGHT LESS SYNTAX
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #01597d;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      color: #f7ff27;
+    }
+
+    span.icon {
+      float: left;
+      width: 30px;
+      height: 30px;
+      margin-top: 5px;
+      background-size: cover;
+      margin-left: 10px;
+      margin-right: 7px;
+    }
+  }
 }
