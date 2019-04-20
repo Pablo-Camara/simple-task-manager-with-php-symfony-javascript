@@ -13,14 +13,14 @@
       <div class="search-box" id="search-tasks-component">
         <input type="text" placeholder="Pesquisar tarefa" class="mb0" autofocus/>
       </div>
-      
+
       <h3 class="subtitle mt0">Tarefas:<span class="settings" onClick="toggleDisplay('tasks-menu')">Opções</span></h3>
       <div id="tasks-menu" class="subtitle-menu" style="display: none;">
         <div id="new-task" class="menu-item" onClick="displayElement('new-task-component'); hideElement('tasks-menu')">
           <span class="icon new-task-icon"></span> Nova tarefa
         </div>
 
-        <div id="search-task" class="menu-item" onClick="displayElement('search-tasks-component'); hideElement('tasks-menu')">
+        <div id="search-tasks" class="menu-item" onClick="displayElement('search-tasks-component'); hideElement('tasks-menu')">
           <span class="icon search-icon"></span> Pesquisar
         </div>
       </div>

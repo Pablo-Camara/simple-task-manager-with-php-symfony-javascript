@@ -1,10 +1,22 @@
 {% extends 'task_manager/folder/base.html.twig' %}
 
 {% block content %}
+
     <div class="search-box">
       <input type="text" placeholder="Pesquisar subpasta" class="mb0"/>
     </div>
-    <h3 class="subtitle mt0">Subpastas:<span class="settings">Opções</span></h3>
+    <h3 class="subtitle mt0">Subpastas:<span class="settings" onClick="toggleDisplay('subfolders-menu')">Opções</span></h3>
+    <div id="subfolders-menu" class="subtitle-menu" style="display: none;">
+      <div id="new-subfolder" class="menu-item" onClick="displayElement('new-subfolder-component'); hideElement('subfolders-menu')">
+        <span class="icon new-folder-icon"></span> Nova subpasta
+      </div>
+
+      <div id="search-subfolders" class="menu-item" onClick="displayElement('search-subfolders-component'); hideElement('subfolders-menu')">
+        <span class="icon search-icon"></span> Pesquisar
+      </div>
+    </div>
+
+
     {% if subfolders|length > 0 %}
       {% for subfolder in subfolders %}
         <a class="item hover" href="{{ path('task-manager-folder-tasks', {folder: subfolder.id}) }}">

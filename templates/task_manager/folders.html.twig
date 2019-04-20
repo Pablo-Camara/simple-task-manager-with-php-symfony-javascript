@@ -19,7 +19,18 @@
         <div class="search-box">
           <input type="text" placeholder="Pesquisar pasta" class="mb0"/>
         </div>
-        <h3 class="subtitle mt0">As minhas pastas:<span class="settings">Opções</span></h3>
+        <h3 class="subtitle mt0">As minhas pastas:<span class="settings" onClick="toggleDisplay('folders-menu');">Opções</span></h3>
+        <div id="folders-menu" class="subtitle-menu" style="display: none;">
+          <div id="new-folder" class="menu-item" onClick="displayElement('new-folder-component'); hideElement('folders-menu')">
+            <span class="icon new-folder-icon"></span> Nova pasta
+          </div>
+
+          <div id="search-folders" class="menu-item" onClick="displayElement('search-folders-component'); hideElement('folders-menu')">
+            <span class="icon search-icon"></span> Pesquisar
+          </div>
+        </div>
+
+
         <div class="dashboard-list-items">
           {% if main_folders|length > 0 %}
             {% for folder in main_folders %}
