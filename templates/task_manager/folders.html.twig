@@ -44,14 +44,14 @@
           {% if main_folders|length > 0 %}
             {% for folder in main_folders %}
               <div class="item">
-                <div class="item-line">
+                <div class="item-line" onClick="toggleDisplay('task-item-btns')">
                   <span class="icon folder-icon"></span> {{ folder.name }}
                 </div>
-                <div class="item-line white smaller pl30">
+                <div class="item-line white smaller pl30" onClick="toggleDisplay('task-item-btns')">
                   {{ folder.description }}
                 </div>
 
-                <div class="item-line buttons">
+                <div class="item-line buttons" id="task-item-btns" style="display: none">
                   <a href="{{ path('task-manager-folder-tasks', { folder: folder.id }) }}"  class="btn">Ver tarefas</a>
                   <a href="{{ path('task-manager-folder-subfolders', {folder: folder.id}) }}" class="btn">Ver subpastas</a>
                 </div>
