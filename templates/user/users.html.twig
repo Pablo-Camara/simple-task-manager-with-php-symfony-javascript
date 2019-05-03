@@ -2,26 +2,50 @@
 
 {% block title %}- Gestor de Utilizadores{% endblock %}
 
+{% block javascripts %}
+
+<script type="text/javascript">
+
+  // Submit new user
+  var new_user_component = document.getElementById('new-user-component');
+  new_user_component.getElementsByClassName('submit-button')[0].onclick = function(e){
+    var inputs = new_user_component.getElementsByTagName('input');
+
+    post('full_name=' + inputs.full_name.value +
+      '&email=' + inputs.email.value +
+      '&password=' + inputs.password.value +
+      '&is_admin=' + inputs.is_admin.checked +
+      '&is_user_manager=' + inputs.is_user_manager.checked +
+      '&is_task_manager=' + inputs.is_task_manager.checked +
+      '&csrf_token={{ csrf_token('user-manager-add') }}'
+    ,'{{ path('user-manager-add') }}',function(res){
+      console.log(res);
+    })
+  };
+
+</script>
+{% endblock %}
+
 {% block body %}
     <div class="dashboard-box pos-relative">
-        <a class="section-title header mb0" href="{{ path('user_manager') }}">
+        <a class="section-title header mb0" href="{{ path('user-manager') }}">
             <div class="image clients"></div>
             <div class="title">Gestor de Utilizadores</div>
         </a>
 
-        <div id="new-user-component" style="display: none">
+        <div id="new-user-component" style="display: none; margin-bottom: 10px;">
           <h3 class="subtitle mt0 smaller-subtitle">Novo utilizador: <span class="close-label" onClick="hideElement('new-user-component')">X</span></h3>
-          <input type="text" placeholder="Nome do Utilizador" class="mb0 ph-white db-border-b">
-          <input type="email" placeholder="Email" class="mb0 ph-white db-border-b">
-          <input type="password" placeholder="Nova password" class="mb0 ph-white db-border-b">
+          <input type="text" name="full_name" placeholder="Nome do Utilizador" class="mb0 ph-white db-border-b">
+          <input type="email" name="email" placeholder="Email" class="mb0 ph-white db-border-b">
+          <input type="password" name="password" placeholder="Nova password" class="mb0 ph-white db-border-b">
           <input type="password" placeholder="Repita a nova password" class="mb0 ph-white db-border-b">
 
-          <select multiple size="4">
-              <option value="" disabled>Permissões:</option>
-              <option class="color-blue">Administrador</option>
-              <option>Gestor de Tarefas</option>
-          </select>
+          <h4 class="box-heading">Permissões:</h4>
+          <div class="checkbox-container"><label><input type="checkbox" name="is_admin"/> Administrador</label></div>
+          <div class="checkbox-container"><label><input type="checkbox" name="is_user_manager"/> Gestor de Utilizadores</label></div>
+          <div class="checkbox-container"><label><input type="checkbox" name="is_task_manager"/> Gestor de Tarefas</label></div>
 
+          <div class="submit-button" style="border-top: 2px solid #0e4963; color: #f7f23a">Criar</div>
         </div>
 
 

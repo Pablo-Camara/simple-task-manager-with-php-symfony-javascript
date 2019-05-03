@@ -26,7 +26,6 @@
 .dashboard-box input[type="button"],
 .dashboard-box input[type="submit"],
 .dashboard-box textarea,
-.dashboard-box select
 {
     -webkit-appearance:     none;
     -moz-appearance:        none;
@@ -55,7 +54,7 @@
 .dashboard-box input[type="password"],
 .dashboard-box input[type="text"],
 .dashboard-box textarea,
-.dashboard-box select
+.checkbox-container
 {
     display: block;
     width: 100%;
@@ -70,17 +69,22 @@
 
 }
 
-.dashboard-box select option {
-    margin-bottom: 5px;
+.dashboard-box .checkbox-container {
+    margin-bottom: 0px;
     background-color: #0b3446;
     padding: 10px 0 10px 12px;
+    border-bottom: 2px solid #043d56;
 }
 
-.dashboard-box select option:disabled {
-    color: #fff700;
-    margin-bottom: 2px;
-    background-color: #0b3446;
-    padding: 10px 0 10px 10px;
+.dashboard-box h4.box-heading {
+  color: #ffffff;
+  margin-bottom: 2px;
+  background-color: #04354c;
+  padding: 10px 0 10px 10px;
+  margin: 0;
+  font-weight: normal;
+  font-size: 14px;
+
 }
 
 .dashboard-box select option:selected {

@@ -149,6 +149,29 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    public function setFullName(string $full_name): self {
+      $names = explode(' ',trim($full_name));
+      $name_count = count($names);
+
+      $first = $names[0];
+      $middleName = null;
+
+      if($name_count >= 3){
+        for($i = 1; $i < $name_count-2; $i++){
+          $middleName .= $names[$i] . ' ';
+        }
+      }
+
+      $last = $names[$name_count-1];
+
+      $this->firstName = $first;
+      $this->middleName = trim($middleName);
+      $this->lastName = $last;
+
+      return $this;
+
+    }
+
     public function getFirstName(): ?string
     {
         return $this->firstName;

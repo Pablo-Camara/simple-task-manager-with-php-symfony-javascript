@@ -9,7 +9,8 @@ ready(function(){
   // Close #main-menu when user clicks outside the menu
   window.addEventListener('click', function(e){
 
-    if (!document.getElementById(mainMenuId).contains(e.target) && !mainMenuToggle.contains(e.target)){
+    if (!document.getElementById(mainMenuId).contains(e.target)
+        && !mainMenuToggle.contains(e.target)){
         hideElement(mainMenuId);
         mainMenuToggle.classList.remove('open');
     }
@@ -17,7 +18,7 @@ ready(function(){
 
   });
 
-  mainMenuToggle.addEventListener('click', function(e){
+  mainMenuToggle && mainMenuToggle.addEventListener('click', function(e){
     if(!e.target.classList.contains('open')){
       displayElement(mainMenuId);
       mainMenuToggle.classList.add('open');
